@@ -1,0 +1,7 @@
+parameters:
+
+
+database:
+	dsn: 'sqlite:%appDir%/../users.sqlite.db'
+	user:
+	password:
