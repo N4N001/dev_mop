@@ -29,7 +29,17 @@ final class UserFacade implements Nette\Security\Authenticator
 		private Passwords $passwords,
 	) {
 	}
-
+	public function getAll()
+	{
+		return $this->database
+			->table('users')
+			->order('id ASC');
+	}
+	
+	public function getById(int $id)
+	{
+		return $this->database->table('users')->get($id);
+	}
 
 	/**
 	 * Performs an authentication.

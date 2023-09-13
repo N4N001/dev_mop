@@ -1,0 +1,12 @@
+{block content}
+<table>
+    {foreach $users as $user_item}
+        <tr>
+            <td><a href="{link User:detail $user_item->id}">{$user_item->username}</a></td>
+            <td>{$user_item->id}</td>
+            <td>{$user_item->email}</td>
+            <td>{$user_item->role}</td>
+        </tr>
+	{/foreach}
+</table>
+{/block}
