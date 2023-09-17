@@ -1,5 +1,14 @@
+<style>
+table, th, td {
+  border:2px solid black;
+}
+</style>
 {block content}
 <table>
+    <th>Username</th>
+    <th>id</th>
+    <th>email</th>
+    <th>role</th>
     {foreach $users as $user_item}
         <tr>
             <td><a href="{link User:detail $user_item->id}">{$user_item->username}</a></td>

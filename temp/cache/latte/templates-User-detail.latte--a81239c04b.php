@@ -38,7 +38,6 @@ final class Templatea81239c04b extends Latte\Runtime\Template
         <p>';
 		echo LR\Filters::escapeHtmlText($user_item->email) /* line 3 */;
 		echo '</p>
-
 ';
 	}
 }
