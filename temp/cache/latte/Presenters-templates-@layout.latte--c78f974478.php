@@ -59,17 +59,15 @@ final class Templatec78f974478 extends Latte\Runtime\Template
 			echo '				<li><a href="';
 			echo LR\Filters::escapeHtmlAttr($this->global->uiControl->link('Sign:out')) /* line 17 */;
 			echo '"
-			>Odhlásit';
-			echo LR\Filters::escapeHtmlText($user_item->username) /* line 18 */;
+			>Odhlásit ';
+			echo LR\Filters::escapeHtmlText($user->getIdentity()->username) /* line 18 */;
 			echo '</a></li>
 ';
 		} else /* line 19 */ {
 			echo '				<li><a href="';
 			echo LR\Filters::escapeHtmlAttr($this->global->uiControl->link('Sign:in')) /* line 20 */;
 			echo '"
-			>Přihlásit';
-			echo LR\Filters::escapeHtmlText($user_item->username) /* line 21 */;
-			echo '</a></li>
+			>Přihlásit</a></li>
 ';
 		}
 		echo '		</ul>
