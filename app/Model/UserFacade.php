@@ -41,6 +41,10 @@ final class UserFacade implements Nette\Security\Authenticator
 		return $this->database->table('users')->get($id);
 	}
 
+	public function delete(int $id){
+		$this->getById($id)->delete();
+	}
+
 	/**
 	 * Performs an authentication.
 	 * @throws Nette\Security\AuthenticationException
@@ -86,6 +90,8 @@ final class UserFacade implements Nette\Security\Authenticator
 			throw new DuplicateNameException;
 		}
 	}
+
+	
 }
 
 

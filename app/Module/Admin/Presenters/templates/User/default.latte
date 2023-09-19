@@ -15,6 +15,10 @@ table, th, td {
             <td>{$user_item->id}</td>
             <td>{$user_item->email}</td>
             <td>{$user_item->role}</td>
+            {if $user_item->id != $user->getIdentity()->id}
+            <td><a n:href="delete! $user_item->id"> Smazat</a></td>
+            {/if}
+
         </tr>
 	{/foreach}
 </table>

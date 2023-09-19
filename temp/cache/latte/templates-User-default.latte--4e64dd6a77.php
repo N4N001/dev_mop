@@ -73,6 +73,14 @@ table, th, td {
             <td>';
 			echo LR\Filters::escapeHtmlText($user_item->role) /* line 17 */;
 			echo '</td>
+';
+			if ($user_item->id != $user->getIdentity()->id) /* line 18 */ {
+				echo '            <td><a href="';
+				echo LR\Filters::escapeHtmlAttr($this->global->uiControl->link('delete!', [$user_item->id])) /* line 19 */;
+				echo '"> Smazat</a></td>
+';
+			}
+			echo '
         </tr>
 ';
 

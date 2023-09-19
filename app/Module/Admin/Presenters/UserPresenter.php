@@ -24,5 +24,9 @@ final class UserPresenter extends Nette\Application\UI\Presenter
 			->getById($id);
 			
 	}
+	public function handleDelete(int $id){
+		$this->facade->delete($id);
+		$this->redirect('User:default');
+	}
 
 }
