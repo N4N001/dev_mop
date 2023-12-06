@@ -301,7 +301,7 @@ class Container_d266e145f7 extends Nette\DI\Container
 
 	public function createServiceDatabase__default__connection(): Nette\Database\Connection
 	{
-		$service = new Nette\Database\Connection('sqlite:/home/jarkas/dev_mop/dev_mop/app/../users.sqlite.db', null, null, []);
+		$service = new Nette\Database\Connection('mysql:host=127.0.0.1;dbname=dev_mop', 'root', 'root', []);
 		Nette\Bridges\DatabaseTracy\ConnectionPanel::initialize(
 			$service,
 			true,

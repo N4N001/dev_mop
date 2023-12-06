@@ -80,6 +80,12 @@ table, th, td {
 				echo '"> Smazat</a></td>
 ';
 			}
+			if ($user_item->id == $user->getIdentity()->id) /* line 21 */ {
+				echo '            <td><a href="';
+				echo LR\Filters::escapeHtmlAttr($this->global->uiControl->link('User:Edit', [$user_item->id])) /* line 22 */;
+				echo '"> Upravit</a></td>
+';
+			}
 			echo '
         </tr>
 ';

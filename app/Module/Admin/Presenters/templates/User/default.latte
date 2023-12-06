@@ -18,6 +18,9 @@ table, th, td {
             {if $user_item->id != $user->getIdentity()->id}
             <td><a n:href="delete! $user_item->id"> Smazat</a></td>
             {/if}
+            {if $user_item->id == $user->getIdentity()->id}
+            <td><a n:href="User:Edit $user_item->id"> Upravit</a></td>
+            {/if}
 
         </tr>
 	{/foreach}

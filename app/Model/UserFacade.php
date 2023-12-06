@@ -41,9 +41,34 @@ final class UserFacade implements Nette\Security\Authenticator
 		return $this->database->table('users')->get($id);
 	}
 
+
 	public function delete(int $id){
 		$this->getById($id)->delete();
 	}
+
+	public function editUser(int $id, $data): void
+    {
+        $user_item = $this->database->table('users')->get($id);
+
+        if (!$user_item) {
+            throw new \Exception("Uživatel s ID $id neexistuje.");
+        }
+		$user_item->update($data);
+		$user_item->update([
+			self::ColumnPasswordHash => $this->passwords->hash($data['password']),
+		]);
+    }
+
+	public function changeRole(int $id, string $role) {
+		$user_item = $this->getById($id);
+		$user_item->update();
+	}
+
+    public function getUserByUsername(string $username)
+    {
+        // Zkusíme najít uživatele podle uživatelského jména
+        return $this->database->table('users')->where('username', $username)->fetch();
+    }
 
 	/**
 	 * Performs an authentication.
@@ -94,8 +119,3 @@ final class UserFacade implements Nette\Security\Authenticator
 	
 }
 
-
-
-class DuplicateNameException extends \Exception
-{
-}
