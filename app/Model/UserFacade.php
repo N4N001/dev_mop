@@ -83,7 +83,7 @@ final class UserFacade implements Nette\Security\Authenticator
 		if (!$row) {
 			throw new Nette\Security\AuthenticationException('The username is incorrect.', self::IDENTITY_NOT_FOUND);
 
-		} elseif (!$this->passwords->verify($password, $row[self::ColumnPasswordHash])) {
+		} elseif (	!$this->passwords->verify($password, $row[self::ColumnPasswordHash])) {
 			throw new Nette\Security\AuthenticationException('The password is incorrect.', self::INVALID_CREDENTIAL);
 
 		} elseif ($this->passwords->needsRehash($row[self::ColumnPasswordHash])) {

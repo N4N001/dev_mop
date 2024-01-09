@@ -7,7 +7,7 @@ use Nette\Application\UI\Form;
 use Nette\Application\UI\Presenters;
 use app\Model\UserFacade;
 use RequireLoggedUser;
-
+	
 final class UserPresenter extends Nette\Application\UI\Presenter
 {
     public function __construct(
@@ -51,7 +51,9 @@ final class UserPresenter extends Nette\Application\UI\Presenter
 	{
 		$form = new Form;
 		$form->addText('username', 'Username:');
-		
+		$form->addUpload('image', 'Soubor')
+            ->setRequired()
+            ->addRule(Form::IMAGE, 'Thumbnail must be JPEG, PNG or GIF');
 		$form->addText('email', 'Email:');
 		$form->addPassword('password', 'Password:');
 		$role=['admin'=>"Admin",'user'=>"User",];
@@ -65,14 +67,18 @@ final class UserPresenter extends Nette\Application\UI\Presenter
 	}
 
 	private function editFormSucceeded(Form $form, array $data): void
-	{
-		if($this->facade->getUserByUsername($data['username'])) {
-			$this->flashMessage('Uživatelské jméno již existuje.');
-		}
-		else{
-		$this->facade->editUser($this->user->id, $data);
-		}
+{
+    $editedUserId = $this->user->id;
+
+	$existingUser = $this->facade->getUserByUsername($data['username']);
+
+	if ($existingUser && $existingUser['id'] !== $editedUserId) {
+	    $this->flashMessage('Uživatelské jméno již existuje.');
+	} else {
+	    $this->facade->editUser($editedUserId, $data);
 	}
+
+}
 
 
 	public function handleDelete(int $id){
